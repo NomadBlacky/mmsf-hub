@@ -1,0 +1,18 @@
+version: 0.1
+env:
+  variables:
+    COURSIER_CACHE: .cache/coursier
+frontend:
+  phases:
+    # IMPORTANT - Please verify your build commands
+    build:
+      commands:
+        - ./sbt build
+  artifacts:
+    # IMPORTANT - Please verify your build output directory
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .cache/coursier/**/*
