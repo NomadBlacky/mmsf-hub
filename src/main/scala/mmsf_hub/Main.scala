@@ -1,5 +1,6 @@
-package scalajs.react.tutorial
+package mmsf_hub
 
+import mmsf_hub.sss_viewer.SSSViewer
 import org.scalajs.dom
 import slinky.hot
 import slinky.web.ReactDOM
@@ -21,6 +22,6 @@ object Main {
       elem
     }
 
-    ReactDOM.render(Game(), container)
+    ReactDOM.render(SSSViewer(), container)
   }
 }

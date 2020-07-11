@@ -1,3 +1,3 @@
-# scalajs-react-tutorial
+# mmsf-hub
 
-Implement [React.js Tutorial](https://reactjs.org/tutorial/tutorial.html) with Scala.js.
+WIP
