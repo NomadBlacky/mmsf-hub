@@ -1,6 +1,7 @@
 package mmsf_hub
 
 import mmsf_hub.sss_viewer.SSSViewer
+import mmsf_hub.sss_viewer.model.Server
 import org.scalajs.dom
 import slinky.hot
 import slinky.web.ReactDOM
@@ -22,6 +23,9 @@ object Main {
       elem
     }
 
-    ReactDOM.render(SSSViewer(), container)
+    // TODO: Read and apply all server data
+    val servers = Seq.fill(56)(Server(1, "オックス"))
+
+    ReactDOM.render(SSSViewer(servers), container)
   }
 }
