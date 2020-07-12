@@ -1,7 +1,8 @@
 package mmsf_hub
 
+import mmsf_hub.common.model.BattleCard
 import mmsf_hub.sss_viewer.SSSViewer
-import mmsf_hub.sss_viewer.model.Server
+import mmsf_hub.sss_viewer.model.{CardTable, Server}
 import org.scalajs.dom
 import slinky.hot
 import slinky.web.ReactDOM
@@ -24,7 +25,8 @@ object Main {
     }
 
     // TODO: Read and apply all server data
-    val servers = Seq.fill(56)(Server(1, "オックス"))
+    val table   = CardTable(Vector.fill(35)(BattleCard(1L, "キャノン")))
+    val servers = Seq.fill(56)(Server(1, "オックス", table))
 
     ReactDOM.render(SSSViewer(servers), container)
   }

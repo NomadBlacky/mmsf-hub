@@ -1,0 +1,35 @@
+.sss-viewer-root {
+  display: flex;
+}
+
+.sss-viewer-root .server-list {
+  flex: 1;
+}
+
+.sss-viewer-root .main {
+  flex: 3;
+}
+
+.sss-viewer-root .main .inputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.sss-viewer-root .main .server-address {
+  margin-left: 1em;
+}
+
+.sss-viewer-root .main .server-content .table {
+  display: table;
+  border: groove;
+}
+
+.sss-viewer-root .main .server-content .table .row {
+  display: table-row;
+}
+
+.sss-viewer-root .main .server-content .table .row .card {
+  display: table-cell;
+  padding: 1em;
+  border: groove;
+}

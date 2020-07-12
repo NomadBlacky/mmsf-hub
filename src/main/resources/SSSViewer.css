@@ -1,0 +1,20 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.sss-viewer-root {
+  display: flex;
+}
+
+.sss-viewer-root .server-list {
+  flex: 1;
+}
+
+.sss-viewer-root .main {
+  flex: 3;
+}

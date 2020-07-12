@@ -1,3 +1,3 @@
 package mmsf_hub.sss_viewer.model
 
-case class Server(level: Int, name: String) {}
+case class Server(level: Int, name: String, cardTable: CardTable) {}
