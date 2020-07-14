@@ -10,9 +10,9 @@ import slinky.web.html._
 
   override def render(): ReactElement =
     div(className := "table")(
-      div()(button(onClick := (() => props.onClick(1)))("A")),
-      div()(button(onClick := (() => props.onClick(2)))("B")),
-      div()(button(onClick := (() => props.onClick(3)))("C"))
+      div()(button(onClick := (() => props.onClick(0)))("A")),
+      div()(button(onClick := (() => props.onClick(1)))("B")),
+      div()(button(onClick := (() => props.onClick(2)))("C"))
     )
 
 }

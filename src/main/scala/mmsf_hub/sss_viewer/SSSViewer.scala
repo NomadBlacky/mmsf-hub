@@ -31,7 +31,7 @@ import scala.scalajs.js.annotation.JSImport
         div(className := "inputs")(
           div(className := "server-position")(
             p()("カスタム画面位置"),
-            CustomLocationComponent(onClick = i => setState(state.copy(customLocation = Some(i))))
+            CustomLocationComponent(onClick = i => setState(state.copy(customLocation = Some(i), serverAddress = None)))
           ),
           div(className := "server-address")(
             p()("サーバアドレス"),
@@ -40,10 +40,39 @@ import scala.scalajs.js.annotation.JSImport
         ),
         div(className := "server-content")(
           p()("カードテーブル"),
-          CardTableComponent(props.servers.head.cardTable)
+          p()(showSelected()),
+          CardTableComponent(props.servers.head.cardTable, calcSelectedCardIndexes())
         )
       )
     )
+  }
+
+  private def showSelected(): String = {
+    val addressNames = IndexedSeq("A", "B", "C")
+    val locStr       = state.customLocation.fold("")(i => (i + 1).toString)
+    val addrStr      = state.serverAddress.fold("")(addressNames(_))
+    s"$locStr-$addrStr"
+  }
+
+  private def calcSelectedCardIndexes(): Set[Int] = {
+    (state.customLocation, state.serverAddress) match {
+      case (Some(loc), None) =>
+        val start = (loc % 3) + (loc / 3 * 5)
+        val indexes = for {
+          y <- 0 to 5
+          x <- 0 to 2
+        } yield start + (y * 5) + x
+        indexes.toSet
+      case (Some(loc), Some(addr)) =>
+        val start = (loc % 3) + (loc / 3 * 5) + (addr * 10)
+        val indexes = for {
+          y <- 0 to 1
+          x <- 0 to 2
+        } yield start + (y * 5) + x
+        indexes.toSet
+      case _ =>
+        Set.empty
+    }
   }
 }
 

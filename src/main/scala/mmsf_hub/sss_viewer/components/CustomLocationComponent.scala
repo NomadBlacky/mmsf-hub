@@ -11,10 +11,10 @@ import slinky.web.html._
   def render(): ReactElement =
     div(className := "table")(
       div()(
-        (1 to 3).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i))
+        (0 to 2).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i + 1))
       ),
       div()(
-        (4 to 6).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i))
+        (3 to 5).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i + 1))
       )
     )
 

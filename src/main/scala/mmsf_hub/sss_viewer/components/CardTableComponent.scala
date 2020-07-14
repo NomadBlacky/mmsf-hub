@@ -7,11 +7,13 @@ import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
 import slinky.web.html._
 
-@react class CardTableComponent extends StatelessComponent {
-  case class Props(cardTable: CardTable)
+import scala.scalajs.js
 
-  private type IdInCardTable = Int
-  private type CardWithId    = (BattleCard, IdInCardTable)
+@react class CardTableComponent extends StatelessComponent {
+  case class Props(cardTable: CardTable, selectedCardIndexes: Set[Int])
+
+  private type IndexInCardTable = Int
+  private type CardWithIndex    = (BattleCard, IndexInCardTable)
 
   def render(): ReactElement =
     div(className := "table")(
@@ -22,11 +24,18 @@ import slinky.web.html._
         .toSeq
     )
 
-  private def renderRows(row: Iterable[CardWithId], rowIndex: Int): ReactElement =
+  private def renderRows(row: Iterable[CardWithIndex], rowIndex: Int): ReactElement =
     div(key := rowIndex.toString, className := "row")(
       row.map { case (card, cId) => renderCard(card, cId) }
     )
 
-  private def renderCard(card: BattleCard, cardId: IdInCardTable): ReactElement =
-    div(key := cardId.toString, id := cardId.toString, className := "card")(card.name)
+  private def renderCard(card: BattleCard, index: IndexInCardTable): ReactElement = {
+    val bg = if (props.selectedCardIndexes.contains(index)) "lightgreen" else "inherit"
+    div(
+      key := index.toString,
+      id := index.toString,
+      className := "card",
+      style := js.Dynamic.literal(background = bg)
+    )(card.name)
+  }
 }
