@@ -17,24 +17,23 @@ import scala.scalajs.js.annotation.JSImport
 
 @react class SSSViewer extends Component {
   case class Props(servers: Seq[Server])
-  case class State(selectedServerIndex: Int, customLocation: Option[Int], serverAddress: Option[Int])
+  case class State(selectedServerId: Int, customLocation: Option[Int], serverAddress: Option[Int])
 
-  def initialState: State = State(0, None, None)
+  def initialState: State = State(props.servers.head.id, None, None)
 
   def render(): ReactElement = {
-    // TODO: Toggle servers on click the name in server list.
-    val server = props.servers.head
+    val selectedServer = props.servers.find(_.id == state.selectedServerId).getOrElse(props.servers.head)
 
     div(className := "sss-viewer-root")( // root
       h2(className := "header")("SSS Viewer"),
       div(className := "contains")(
         div(className := "server-list")( // side menu (server list)
           p()("サーバリスト"),
-          ServerListComponent(props.servers)
+          ServerListComponent(props.servers, state.selectedServerId, i => setState(state.copy(selectedServerId = i)))
         ),
         div(className := "main")( // main contents
           div(className := "server-name")(
-            h3(s"Lv.${server.level}: ${server.name}")
+            h3(s"Lv.${selectedServer.level}: ${selectedServer.name}")
           ),
           div(className := "inputs")(
             div(className := "server-position")(
@@ -51,7 +50,7 @@ import scala.scalajs.js.annotation.JSImport
           div(className := "server-content")(
             p()("カードテーブル"),
             p()(showSelected()),
-            CardTableComponent(server.cardTable, calcSelectedCardIndexes())
+            CardTableComponent(selectedServer.cardTable, calcSelectedCardIndexes())
           )
         )
       )

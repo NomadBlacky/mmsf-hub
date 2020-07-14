@@ -4,15 +4,24 @@ import mmsf_hub.sss_viewer.model.Server
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
-import slinky.web.html.{className, key, li, ul}
+import slinky.web.html._
+
+import scala.scalajs.js
 
 @react class ServerListComponent extends StatelessComponent {
-  case class Props(servers: Seq[Server])
+  case class Props(servers: Seq[Server], selectedServerId: Int, onClick: Int => Unit)
 
   def render(): ReactElement =
     ul(className := "server")(
-      props.servers.zipWithIndex.map {
-        case (s, i) => li(key := i.toString)(s"Lv.${s.level}: ${s.name}")
+      props.servers.map { server =>
+        val bg = if (props.selectedServerId == server.id) "lightgreen" else "inherit"
+        li(
+          key := server.id.toString,
+          onClick := (() => props.onClick(server.id)),
+          style := js.Dynamic.literal(background = bg)
+        )(
+          s"Lv.${server.level}: ${server.name}"
+        )
       }
     )
 
