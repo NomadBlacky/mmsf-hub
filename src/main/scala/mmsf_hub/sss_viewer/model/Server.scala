@@ -1,3 +1,14 @@
 package mmsf_hub.sss_viewer.model
 
-case class Server(level: Int, name: String, cardTable: CardTable) {}
+import enumeratum.{Enum, EnumEntry}
+
+case class Server(id: Int, serverType: ServerType, level: Int, name: String, cardTable: CardTable)
+
+sealed trait ServerType extends EnumEntry
+
+object ServerType extends Enum[ServerType] {
+  def values: IndexedSeq[ServerType] = findValues
+
+  case object SatelliteServer extends ServerType
+  case object MeteorServer    extends ServerType
+}

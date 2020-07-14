@@ -2,7 +2,7 @@ package mmsf_hub
 
 import mmsf_hub.common.model.BattleCard
 import mmsf_hub.sss_viewer.SSSViewer
-import mmsf_hub.sss_viewer.model.{CardTable, Server}
+import mmsf_hub.sss_viewer.model.{CardTable, Server, ServerType}
 import org.scalajs.dom
 import slinky.hot
 import slinky.web.ReactDOM
@@ -30,8 +30,9 @@ object Main {
   // TODO: Read and apply all server data
   private def genDummyServers(): Seq[Server] = {
     (1 to 56).map { serverLevel =>
-      val table = CardTable(Vector.fill(35)(BattleCard(1L, s"キャノン$serverLevel")))
-      Server(serverLevel, "オックス", table)
+      val serverType = if (serverLevel < 33) ServerType.SatelliteServer else ServerType.MeteorServer
+      val table      = CardTable(Vector.fill(35)(BattleCard(1L, s"キャノン$serverLevel")))
+      Server(serverLevel, serverType, serverLevel, "オックス", table)
     }
   }
 }
