@@ -24,10 +24,14 @@ object Main {
       elem
     }
 
-    // TODO: Read and apply all server data
-    val table   = CardTable(Vector.fill(35)(BattleCard(1L, "キャノン")))
-    val servers = Seq.fill(56)(Server(1, "オックス", table))
+    ReactDOM.render(SSSViewer(genDummyServers()), container)
+  }
 
-    ReactDOM.render(SSSViewer(servers), container)
+  // TODO: Read and apply all server data
+  private def genDummyServers(): Seq[Server] = {
+    (1 to 56).map { serverLevel =>
+      val table = CardTable(Vector.fill(35)(BattleCard(1L, s"キャノン$serverLevel")))
+      Server(serverLevel, "オックス", table)
+    }
   }
 }
