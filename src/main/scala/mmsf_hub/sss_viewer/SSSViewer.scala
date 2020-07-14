@@ -1,6 +1,6 @@
 package mmsf_hub.sss_viewer
 
-import mmsf_hub.sss_viewer.components.{CardTableComponent, ServerAddressComponent}
+import mmsf_hub.sss_viewer.components.{CardTableComponent, CustomLocationComponent, ServerAddressComponent}
 import mmsf_hub.sss_viewer.model.Server
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
@@ -27,14 +27,7 @@ import scala.scalajs.js.annotation.JSImport
         div(className := "inputs")(
           div(className := "server-position")(
             p()("カスタム画面位置"),
-            div(className := "table")(
-              div()(
-                (1 to 3).map(i => button(key := i.toString)(i))
-              ),
-              div()(
-                (4 to 6).map(i => button(key := i.toString)(i))
-              )
-            )
+            CustomLocationComponent()
           ),
           div(className := "server-address")(
             p()("サーバアドレス"),
