@@ -1,6 +1,11 @@
 package mmsf_hub.sss_viewer
 
-import mmsf_hub.sss_viewer.components.{CardTableComponent, CustomLocationComponent, ServerAddressComponent}
+import mmsf_hub.sss_viewer.components.{
+  CardTableComponent,
+  CustomLocationComponent,
+  ServerAddressComponent,
+  ServerListComponent
+}
 import mmsf_hub.sss_viewer.model.Server
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
@@ -17,11 +22,7 @@ import scala.scalajs.js.annotation.JSImport
     div(className := "sss-viewer-root")( // root
       div(className := "server-list")(   // side menu (server list)
         p()("サーバリスト"),
-        ul()(
-          props.servers.zipWithIndex.map {
-            case (s, i) => li(key := i.toString)(s"Lv.${s.level}: ${s.name}")
-          }
-        )
+        ServerListComponent(props.servers)
       ),
       div(className := "main")( // main contents
         div(className := "inputs")(
