@@ -7,7 +7,7 @@ import mmsf_hub.sss_viewer.components.{
   ServerListComponent
 }
 import mmsf_hub.sss_viewer.model.Server
-import slinky.core.StatelessComponent
+import slinky.core.Component
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
 import slinky.web.html._
@@ -15,10 +15,13 @@ import slinky.web.html._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSImport
 
-@react class SSSViewer extends StatelessComponent {
+@react class SSSViewer extends Component {
   case class Props(servers: Seq[Server])
+  case class State(selectedServerIndex: Int, customLocation: Option[Int], serverAddress: Option[Int])
 
-  override def render(): ReactElement = {
+  def initialState: State = State(0, None, None)
+
+  def render(): ReactElement = {
     div(className := "sss-viewer-root")( // root
       div(className := "server-list")(   // side menu (server list)
         p()("サーバリスト"),
@@ -28,7 +31,7 @@ import scala.scalajs.js.annotation.JSImport
         div(className := "inputs")(
           div(className := "server-position")(
             p()("カスタム画面位置"),
-            CustomLocationComponent()
+            CustomLocationComponent(onClick = i => setState(state.copy(customLocation = Some(i))))
           ),
           div(className := "server-address")(
             p()("サーバアドレス"),
