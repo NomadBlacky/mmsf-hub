@@ -1,6 +1,6 @@
 package mmsf_hub.sss_viewer
 
-import mmsf_hub.sss_viewer.components.CardTableComponent
+import mmsf_hub.sss_viewer.components.{CardTableComponent, ServerAddressComponent}
 import mmsf_hub.sss_viewer.model.Server
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
@@ -38,11 +38,7 @@ import scala.scalajs.js.annotation.JSImport
           ),
           div(className := "server-address")(
             p()("サーバアドレス"),
-            div(className := "table")(
-              div()(button()("A")),
-              div()(button()("B")),
-              div()(button()("C"))
-            )
+            ServerAddressComponent()
           )
         ),
         div(className := "server-content")(
