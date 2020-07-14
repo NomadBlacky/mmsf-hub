@@ -1,5 +1,6 @@
 package mmsf_hub.sss_viewer
 
+import mmsf_hub.sss_viewer.components.CardTableComponent
 import mmsf_hub.sss_viewer.model.Server
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
@@ -46,18 +47,7 @@ import scala.scalajs.js.annotation.JSImport
         ),
         div(className := "server-content")(
           p()("カードテーブル"),
-          div(className := "table")(
-            props.servers.head.cardTable.cards.zipWithIndex
-              .grouped(5)
-              .zipWithIndex
-              .map {
-                case (row, i) =>
-                  div(key := i.toString, className := "row")(
-                    row.map { case (card, j) => div(key := j.toString, className := "card")(card.name) }
-                  )
-              }
-              .toSeq
-          )
+          CardTableComponent(props.servers.head.cardTable)
         )
       )
     )
