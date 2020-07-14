@@ -3,16 +3,16 @@ package mmsf_hub.sss_viewer.components
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
-import slinky.web.html.{button, className, div}
+import slinky.web.html._
 
 @react class ServerAddressComponent extends StatelessComponent {
-  type Props = Unit
+  case class Props(onClick: Int => Unit)
 
   override def render(): ReactElement =
     div(className := "table")(
-      div()(button()("A")),
-      div()(button()("B")),
-      div()(button()("C"))
+      div()(button(onClick := (() => props.onClick(1)))("A")),
+      div()(button(onClick := (() => props.onClick(2)))("B")),
+      div()(button(onClick := (() => props.onClick(3)))("C"))
     )
 
 }

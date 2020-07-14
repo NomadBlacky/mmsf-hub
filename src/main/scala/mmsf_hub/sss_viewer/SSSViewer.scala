@@ -35,7 +35,7 @@ import scala.scalajs.js.annotation.JSImport
           ),
           div(className := "server-address")(
             p()("サーバアドレス"),
-            ServerAddressComponent()
+            ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
           )
         ),
         div(className := "server-content")(
