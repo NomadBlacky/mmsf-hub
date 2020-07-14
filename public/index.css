@@ -1,5 +1,14 @@
 .sss-viewer-root {
   display: flex;
+  flex-direction: column;
+}
+
+.sss-viewer-root .header {
+  display: flex;
+}
+
+.sss-viewer-root .contains {
+  display: flex;
 }
 
 .sss-viewer-root .server-list {

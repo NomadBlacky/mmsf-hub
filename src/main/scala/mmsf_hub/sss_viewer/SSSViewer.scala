@@ -22,26 +22,37 @@ import scala.scalajs.js.annotation.JSImport
   def initialState: State = State(0, None, None)
 
   def render(): ReactElement = {
+    // TODO: Toggle servers on click the name in server list.
+    val server = props.servers.head
+
     div(className := "sss-viewer-root")( // root
-      div(className := "server-list")(   // side menu (server list)
-        p()("サーバリスト"),
-        ServerListComponent(props.servers)
-      ),
-      div(className := "main")( // main contents
-        div(className := "inputs")(
-          div(className := "server-position")(
-            p()("カスタム画面位置"),
-            CustomLocationComponent(onClick = i => setState(state.copy(customLocation = Some(i), serverAddress = None)))
-          ),
-          div(className := "server-address")(
-            p()("サーバアドレス"),
-            ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
-          )
+      h2(className := "header")("SSS Viewer"),
+      div(className := "contains")(
+        div(className := "server-list")( // side menu (server list)
+          p()("サーバリスト"),
+          ServerListComponent(props.servers)
         ),
-        div(className := "server-content")(
-          p()("カードテーブル"),
-          p()(showSelected()),
-          CardTableComponent(props.servers.head.cardTable, calcSelectedCardIndexes())
+        div(className := "main")( // main contents
+          div(className := "server-name")(
+            h3(s"Lv.${server.level}: ${server.name}")
+          ),
+          div(className := "inputs")(
+            div(className := "server-position")(
+              p()("カスタム画面位置"),
+              CustomLocationComponent(onClick =
+                i => setState(state.copy(customLocation = Some(i), serverAddress = None))
+              )
+            ),
+            div(className := "server-address")(
+              p()("サーバアドレス"),
+              ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
+            )
+          ),
+          div(className := "server-content")(
+            p()("カードテーブル"),
+            p()(showSelected()),
+            CardTableComponent(server.cardTable, calcSelectedCardIndexes())
+          )
         )
       )
     )
