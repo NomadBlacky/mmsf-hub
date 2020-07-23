@@ -13,10 +13,13 @@
 
 .sss-viewer-root .server-list {
   flex: 1;
+  height: 90vh;
+  overflow: scroll;
 }
 
 .sss-viewer-root .main {
   flex: 3;
+  margin-left: 1em;
 }
 
 .sss-viewer-root .main .inputs {
