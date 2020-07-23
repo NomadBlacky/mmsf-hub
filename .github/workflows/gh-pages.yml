@@ -1,0 +1,39 @@
+name: GitHub pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy_to_gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+
+      - name: Cache Coursier and node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/coursier
+            .target/scala-2.13/scalajs-bundler/main/node_modules
+          key: ${{ runner.os }}-cache-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
+
+      - name: Build App
+        run: ./sbt fullOptJS::webpack
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
