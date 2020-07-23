@@ -45,11 +45,7 @@ object Main {
         js.Dynamic.literal(columns = true).asInstanceOf[Options]
       ).asInstanceOf[js.Array[js.Dictionary[String]]]
 
-    println(rawServers)
-
     val servers = rawServers.map { dict =>
-      println(dict.keys)
-      println(dict.values)
       Server(
         id = dict("id").toInt,
         serverType = ServerType.values(dict("type").toInt),
