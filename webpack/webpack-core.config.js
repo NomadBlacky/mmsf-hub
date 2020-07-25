@@ -50,5 +50,8 @@ module.exports = {
         return "webpack://" + f.namespace + "/" + f.resourcePath;
       }
     }
+  },
+  devServer: {
+    port: 9000
   }
 }

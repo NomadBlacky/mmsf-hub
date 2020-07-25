@@ -9,6 +9,8 @@ import slinky.hot
 import slinky.web.ReactDOM
 import typings.csvParse.mod.Options
 import typings.csvParse.{libSyncMod => parseCsv}
+import typings.datadogBrowserRum.mod.datadogRum
+import typings.datadogBrowserRum.rumEntryMod.RumUserConfiguration
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 import scala.scalajs.{js, LinkingInfo}
@@ -18,6 +20,15 @@ object Main {
   def main(): Unit = {
     if (LinkingInfo.developmentMode) {
       hot.initialize()
+    }
+
+    if (LinkingInfo.productionMode) {
+      datadogRum.init(
+        RumUserConfiguration(
+          applicationId = "419628fb-f24d-4492-a091-7508e63a6f72",
+          clientToken = "pub4ac0dc52bfdd0cb78e53eba312251341"
+        ).setTrackInteractions(true)
+      )
     }
 
     val container = Option(dom.document.getElementById("root")).getOrElse {

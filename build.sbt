@@ -7,10 +7,11 @@ name := "mmsf-hub"
 scalaVersion := "2.13.3"
 
 npmDependencies in Compile ++= Seq(
-  "react"       -> "16.13.1",
-  "react-dom"   -> "16.13.1",
-  "react-proxy" -> "1.1.8",
-  "csv-parse"   -> "4.11.1"
+  "react"                -> "16.13.1",
+  "react-dom"            -> "16.13.1",
+  "react-proxy"          -> "1.1.8",
+  "csv-parse"            -> "4.11.1",
+  "@datadog/browser-rum" -> "1.13.0"
 )
 
 npmDevDependencies in Compile ++= Seq(
