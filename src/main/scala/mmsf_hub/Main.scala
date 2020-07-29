@@ -1,7 +1,7 @@
 package mmsf_hub
 
 import mmsf_hub.common.model.BattleCard
-import mmsf_hub.sss_viewer.SSSViewer
+import mmsf_hub.sss_viewer.components.MainComponent
 import mmsf_hub.sss_viewer.model.{CardTable, Server, ServerType}
 import org.scalajs.dom
 import org.scalajs.dom.raw.{Element, XMLHttpRequest}
@@ -11,20 +11,11 @@ import typings.csvParse.mod.Options
 import typings.csvParse.{libSyncMod => parseCsv}
 import typings.datadogBrowserRum.mod.datadogRum
 import typings.datadogBrowserRum.rumEntryMod.RumUserConfiguration
-import typings.materialUiCore.createMuiThemeMod.ThemeOptions
-import typings.materialUiCore.createPaletteMod.{PaletteColorOptions, PaletteOptions}
-import typings.materialUiCore.stylesMod.createMuiTheme
-import typings.materialUiStyles.components.ThemeProvider
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 import scala.scalajs.{js, LinkingInfo}
 
 object Main {
-
-  private val theme = createMuiTheme(
-    ThemeOptions().setPalette(PaletteOptions().setPrimary(PaletteColorOptions.SimplePaletteColorOptions("#03a9f4")))
-  )
-
   @JSExportTopLevel("main")
   def main(): Unit = {
     if (LinkingInfo.developmentMode) {
@@ -75,7 +66,7 @@ object Main {
       )
     }.toSeq
 
-    ReactDOM.render(ThemeProvider(theme)(SSSViewer(servers)), container)
+    ReactDOM.render(MainComponent(servers), container)
   }
 
   private def parseCards(text: String): Vector[BattleCard] = {

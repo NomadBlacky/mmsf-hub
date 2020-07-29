@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .sss-viewer-root {
   display: flex;
   flex-direction: column;
@@ -13,7 +17,8 @@
 
 .sss-viewer-root .server-list {
   flex: 1;
-  height: 90vh;
+  height: 100vh;
+  padding: 1em;
   overflow: scroll;
 }
 
