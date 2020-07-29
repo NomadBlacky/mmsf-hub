@@ -11,11 +11,20 @@ import typings.csvParse.mod.Options
 import typings.csvParse.{libSyncMod => parseCsv}
 import typings.datadogBrowserRum.mod.datadogRum
 import typings.datadogBrowserRum.rumEntryMod.RumUserConfiguration
+import typings.materialUiCore.createMuiThemeMod.ThemeOptions
+import typings.materialUiCore.createPaletteMod.{PaletteColorOptions, PaletteOptions}
+import typings.materialUiCore.stylesMod.createMuiTheme
+import typings.materialUiStyles.components.ThemeProvider
 
 import scala.scalajs.js.annotation.JSExportTopLevel
 import scala.scalajs.{js, LinkingInfo}
 
 object Main {
+
+  private val theme = createMuiTheme(
+    ThemeOptions().setPalette(PaletteOptions().setPrimary(PaletteColorOptions.SimplePaletteColorOptions("#03a9f4")))
+  )
+
   @JSExportTopLevel("main")
   def main(): Unit = {
     if (LinkingInfo.developmentMode) {
@@ -66,7 +75,7 @@ object Main {
       )
     }.toSeq
 
-    ReactDOM.render(SSSViewer(servers), container)
+    ReactDOM.render(ThemeProvider(theme)(SSSViewer(servers)), container)
   }
 
   private def parseCards(text: String): Vector[BattleCard] = {
