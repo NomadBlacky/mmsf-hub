@@ -4,6 +4,7 @@ import mmsf_hub.sss_viewer.SSSViewer
 import mmsf_hub.sss_viewer.model.Server
 import slinky.core.FunctionalComponent
 import slinky.core.annotations.react
+import slinky.web.html._
 import typings.materialUiCore.components.{AppBar, Toolbar, Typography}
 import typings.materialUiCore.createMuiThemeMod.ThemeOptions
 import typings.materialUiCore.createPaletteMod.{PaletteColorOptions, PaletteOptions}
@@ -28,7 +29,10 @@ import typings.react.mod.CSSProperties
         .color(Color.primary)
         .position(static)(
           Toolbar(
-            Typography.variant(Style.h6).style(CSSProperties().setColor("inherit").setFlexGrow(1))("MMSF Hub")
+            img(src := "favicon.ico", width := "50px", height := "50px"),
+            Typography
+              .variant(Style.h6)
+              .style(CSSProperties().setMarginLeft("1em").setColor("inherit").setFlexGrow(1))("MMSF Hub")
           )
         ),
       SSSViewer(props.servers)
