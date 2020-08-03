@@ -17,13 +17,14 @@ body {
 
 .sss-viewer-root .server-list {
   flex: 1;
-  height: 100vh;
+  height: 90vh;
   padding: 1em;
   overflow: scroll;
 }
 
 .sss-viewer-root .main {
   flex: 3;
+  height: 90vh;
   margin-left: 1em;
 }
 
@@ -32,8 +33,17 @@ body {
   flex-direction: row;
 }
 
+.sss-viewer-root .main .inputs .server-position button {
+  margin: 0.5em;
+}
+
 .sss-viewer-root .main .server-address {
   margin-left: 1em;
+}
+
+.sss-viewer-root .main .server-address button {
+  width: 100%;
+  margin: 0.5em;
 }
 
 .sss-viewer-root .main .server-content .table {

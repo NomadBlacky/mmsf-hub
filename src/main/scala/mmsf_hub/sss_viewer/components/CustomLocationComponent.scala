@@ -12,10 +12,14 @@ import typings.materialUiCore.materialUiCoreStrings.outlined
   val component: FunctionalComponent[Props] = FunctionalComponent[Props] { props =>
     div(className := "table")(
       div(
-        (0 to 2).map(i => Button.withKey(i.toString).variant(outlined).onClick(_ => props.onClick(i))(i + 1))
+        (0 to 2).map(i =>
+          Button.withKey(i.toString).variant(outlined).className("button").onClick(_ => props.onClick(i))(i + 1)
+        )
       ),
       div(
-        (3 to 5).map(i => Button.withKey(i.toString).variant(outlined).onClick(_ => props.onClick(i))(i + 1))
+        (3 to 5).map(i =>
+          Button.withKey(i.toString).variant(outlined).className("button").onClick(_ => props.onClick(i))(i + 1)
+        )
       )
     )
   }
