@@ -1,21 +1,26 @@
 package mmsf_hub.sss_viewer.components
 
-import slinky.core.StatelessComponent
+import slinky.core.FunctionalComponent
 import slinky.core.annotations.react
-import slinky.core.facade.ReactElement
 import slinky.web.html._
+import typings.materialUiCore.components.Button
+import typings.materialUiCore.materialUiCoreStrings.outlined
 
-@react class CustomLocationComponent extends StatelessComponent {
+@react object CustomLocationComponent {
   case class Props(onClick: Int => Unit)
 
-  def render(): ReactElement =
+  val component: FunctionalComponent[Props] = FunctionalComponent[Props] { props =>
     div(className := "table")(
-      div()(
-        (0 to 2).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i + 1))
+      div(
+        (0 to 2).map(i =>
+          Button.withKey(i.toString).variant(outlined).className("button").onClick(_ => props.onClick(i))(i + 1)
+        )
       ),
-      div()(
-        (3 to 5).map(i => button(key := i.toString, onClick := (() => props.onClick(i)))(i + 1))
+      div(
+        (3 to 5).map(i =>
+          Button.withKey(i.toString).variant(outlined).className("button").onClick(_ => props.onClick(i))(i + 1)
+        )
       )
     )
-
+  }
 }

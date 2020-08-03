@@ -1,18 +1,19 @@
 package mmsf_hub.sss_viewer.components
 
-import slinky.core.StatelessComponent
+import slinky.core.FunctionalComponent
 import slinky.core.annotations.react
-import slinky.core.facade.ReactElement
 import slinky.web.html._
+import typings.materialUiCore.materialUiCoreStrings.outlined
+import typings.materialUiCore.components.Button
 
-@react class ServerAddressComponent extends StatelessComponent {
+@react object ServerAddressComponent {
   case class Props(onClick: Int => Unit)
 
-  override def render(): ReactElement =
+  val component: FunctionalComponent[Props] = FunctionalComponent[Props] { props =>
     div(className := "table")(
-      div()(button(onClick := (() => props.onClick(0)))("A")),
-      div()(button(onClick := (() => props.onClick(1)))("B")),
-      div()(button(onClick := (() => props.onClick(2)))("C"))
+      div()(Button.variant(outlined).onClick(_ => props.onClick(0))("A")),
+      div()(Button.variant(outlined).onClick(_ => props.onClick(1))("B")),
+      div()(Button.variant(outlined).onClick(_ => props.onClick(2))("C"))
     )
-
+  }
 }

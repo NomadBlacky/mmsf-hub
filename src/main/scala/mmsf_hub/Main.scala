@@ -1,7 +1,7 @@
 package mmsf_hub
 
 import mmsf_hub.common.model.BattleCard
-import mmsf_hub.sss_viewer.SSSViewer
+import mmsf_hub.sss_viewer.components.MainComponent
 import mmsf_hub.sss_viewer.model.{CardTable, Server, ServerType}
 import org.scalajs.dom
 import org.scalajs.dom.raw.{Element, XMLHttpRequest}
@@ -66,7 +66,7 @@ object Main {
       )
     }.toSeq
 
-    ReactDOM.render(SSSViewer(servers), container)
+    ReactDOM.render(MainComponent(servers), container)
   }
 
   private def parseCards(text: String): Vector[BattleCard] = {

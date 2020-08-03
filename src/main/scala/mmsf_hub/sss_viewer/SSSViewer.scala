@@ -25,13 +25,13 @@ import scala.scalajs.js.annotation.JSImport
     val selectedServer = props.servers.find(_.id == state.selectedServerId).getOrElse(props.servers.head)
 
     div(className := "sss-viewer-root")( // root
-      h2(className := "header")("SSS Viewer"),
       div(className := "contains")(
         div(className := "server-list")( // side menu (server list)
           p()("サーバリスト"),
           ServerListComponent(props.servers, state.selectedServerId, i => setState(state.copy(selectedServerId = i)))
         ),
         div(className := "main")( // main contents
+          h2(className := "header")("SSS Viewer"),
           div(className := "server-name")(
             h3(s"Lv.${selectedServer.level}: ${selectedServer.name}")
           ),
