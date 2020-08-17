@@ -77,7 +77,7 @@ import scala.util.Try
           div(className := "server-content")(
             p()("カードテーブル"),
             p()(showSelected()),
-            CardTableComponent(selectedServer.cardTable, calcSelectedCardIndexes())
+            CardTableComponent(selectedServer, calcSelectedCardIndexes())
           )
         )
       )
