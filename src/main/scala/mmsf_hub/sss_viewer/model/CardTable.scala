@@ -9,3 +9,7 @@ import mmsf_hub.common.model.BattleCard
 case class CardTable(cards: Vector[BattleCard]) {
   require(cards.size == 35)
 }
+
+object CardTable {
+  def getLocationFromIndex(index: Int): (Int, Int) = (index % 5, index / 5)
+}
