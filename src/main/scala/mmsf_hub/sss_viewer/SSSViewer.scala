@@ -65,15 +65,18 @@ import scala.util.Try
               ),
               div(className := "server-position")(
                 p()("カスタム画面位置"),
-                CustomLocationComponent(onClick =
-                  i => setState(state.copy(customLocation = Some(i), serverAddress = None))
+                CustomLocationComponent(
+                  selectedLocation = state.customLocation,
+                  onClick = i => setState(state.copy(customLocation = Some(i), serverAddress = None))
                 )
               ),
               div(className := "server-address")(
                 p()("サーバアドレス"),
-                ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
-              ),
-              p(showSelected())
+                ServerAddressComponent(
+                  selectedAddress = state.serverAddress,
+                  onClick = i => setState(state.copy(serverAddress = Some(i)))
+                )
+              )
             ),
             div(className := "server-content")(
               CardTableComponent(selectedServer, calcSelectedCardIndexes())
@@ -82,13 +85,6 @@ import scala.util.Try
         )
       )
     )
-  }
-
-  private def showSelected(): String = {
-    val addressNames = IndexedSeq("A", "B", "C")
-    val locStr       = state.customLocation.fold("")(i => (i + 1).toString)
-    val addrStr      = state.serverAddress.fold("")(addressNames(_))
-    s"$locStr-$addrStr"
   }
 
   private def calcSelectedCardIndexes(): Set[Int] = {
