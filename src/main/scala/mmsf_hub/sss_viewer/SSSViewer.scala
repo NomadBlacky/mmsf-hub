@@ -7,7 +7,6 @@ import slinky.core.Component
 import slinky.core.annotations.react
 import slinky.core.facade.ReactElement
 import slinky.web.html._
-import typings.materialUiCore.components.ListSubheader
 
 import scala.scalajs.js
 import scala.scalajs.js.JSON
@@ -52,32 +51,33 @@ import scala.util.Try
         ),
         div(className := "main")( // main contents
           h2(className := "header")("SSS Viewer"),
-          div(className := "server-name")(
-            FavoriteButtonComponent(
-              serverId = selectedServer.id,
-              isFavorite = state.favoriteServerIds.contains(selectedServer.id),
-              onClick = onToggleFavorite
+          div(className := "interface")(
+            div(className := "inputs")(
+              div(className := "server-name")(
+                FavoriteButtonComponent(
+                  serverId = selectedServer.id,
+                  isFavorite = state.favoriteServerIds.contains(selectedServer.id),
+                  onClick = onToggleFavorite
+                ),
+                h3(style := js.Dynamic.literal(display = "inline-block", marginLeft = "0.5em"))(
+                  s"Lv.${selectedServer.level}: ${selectedServer.name}"
+                )
+              ),
+              div(className := "server-position")(
+                p()("カスタム画面位置"),
+                CustomLocationComponent(onClick =
+                  i => setState(state.copy(customLocation = Some(i), serverAddress = None))
+                )
+              ),
+              div(className := "server-address")(
+                p()("サーバアドレス"),
+                ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
+              ),
+              p(showSelected())
             ),
-            h3(style := js.Dynamic.literal(display = "inline-block", marginLeft = "0.5em"))(
-              s"Lv.${selectedServer.level}: ${selectedServer.name}"
+            div(className := "server-content")(
+              CardTableComponent(selectedServer, calcSelectedCardIndexes())
             )
-          ),
-          div(className := "inputs")(
-            div(className := "server-position")(
-              p()("カスタム画面位置"),
-              CustomLocationComponent(onClick =
-                i => setState(state.copy(customLocation = Some(i), serverAddress = None))
-              )
-            ),
-            div(className := "server-address")(
-              p()("サーバアドレス"),
-              ServerAddressComponent(onClick = i => setState(state.copy(serverAddress = Some(i))))
-            )
-          ),
-          div(className := "server-content")(
-            p()("カードテーブル"),
-            p()(showSelected()),
-            CardTableComponent(selectedServer, calcSelectedCardIndexes())
           )
         )
       )

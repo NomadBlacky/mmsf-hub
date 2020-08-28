@@ -41,7 +41,7 @@ import scala.scalajs.js
       style := js.Dynamic.literal(background = bg)
     )(
       div(style := genCardImageCSS(index)),
-      div(card.name)
+      p(className := "card-name")(card.name)
     )
   }
 
@@ -52,7 +52,9 @@ import scala.scalajs.js
       height = CardImageHeightPixel,
       backgroundImage = s"url(images/servers/${props.server.id.formatted("%02d")}.png)",
       backgroundPositionX = s"${-1 * CardImageWidthPixel * x}px",
-      backgroundPositionY = s"${-1 * CardImageHeightPixel * y}px"
+      backgroundPositionY = s"${-1 * CardImageHeightPixel * y}px",
+      marginLeft = "auto",
+      marginRight = "auto"
     )
   }
 }
