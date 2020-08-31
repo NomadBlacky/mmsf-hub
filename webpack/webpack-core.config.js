@@ -49,11 +49,9 @@ module.exports = {
       } else {
         return "webpack://" + f.namespace + "/" + f.resourcePath;
       }
-    },
-    publicPath: '/'
+    }
   },
   devServer: {
-    port: 9000,
-    historyApiFallback: true
+    port: 9000
   }
 }
