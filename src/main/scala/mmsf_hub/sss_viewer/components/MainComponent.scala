@@ -14,6 +14,8 @@ import typings.materialUiCore.stylesMod.createMuiTheme
 import typings.materialUiCore.typographyTypographyMod.Style
 import typings.materialUiStyles.components.ThemeProvider
 import typings.react.mod.CSSProperties
+import typings.reactRouter.mod.RouteProps
+import typings.reactRouterDom.components.{BrowserRouter, Redirect, Route}
 
 @react object MainComponent {
   case class Props(servers: Seq[Server])
@@ -35,7 +37,19 @@ import typings.react.mod.CSSProperties
               .style(CSSProperties().setMarginLeft("1em").setColor("inherit").setFlexGrow(1))("MMSF Hub")
           )
         ),
-      SSSViewer(props.servers)
+      BrowserRouter(
+        Route(
+          RouteProps()
+            .setExact(true)
+            .setPath("/")
+            .setRender(_ => Redirect("/sss-viewer"))
+        ),
+        Route(
+          RouteProps()
+            .setPath("/sss-viewer")
+            .setRender(_ => SSSViewer(props.servers))
+        )
+      )
     )
   }
 }
