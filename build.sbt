@@ -8,14 +8,16 @@ name := "mmsf-hub"
 scalaVersion := "2.13.3"
 
 npmDependencies in Compile ++= Seq(
-  "react"                -> "16.13.1",
-  "react-dom"            -> "16.13.1",
-  "react-proxy"          -> "1.1.8",
-  "@types/react"         -> "16.9.42",
-  "@types/react-dom"     -> "16.9.8",
-  "@types/prop-types"    -> "15.7.3",
-  "csv-parse"            -> "4.11.1",
-  "@datadog/browser-rum" -> "1.13.0",
+  "react"                   -> "16.13.1",
+  "react-dom"               -> "16.13.1",
+  "react-proxy"             -> "1.1.8",
+  "react-router-dom"        -> "5.1.2",
+  "@types/react"            -> "16.9.42",
+  "@types/react-dom"        -> "16.9.8",
+  "@types/react-router-dom" -> "5.1.2",
+  "@types/prop-types"       -> "15.7.3",
+  "csv-parse"               -> "4.11.1",
+  "@datadog/browser-rum"    -> "1.13.0",
   // https://github.com/ScalablyTyped/SlinkyDemos/blob/516a7c0b327d032afa8b8f467e7b60289692c023/build.sbt#L165
   "@material-ui/core"   -> "3.9.4", // note: version 4 is not supported yet
   "@material-ui/styles" -> "3.0.0-alpha.10", // note: version 4 is not supported yet
