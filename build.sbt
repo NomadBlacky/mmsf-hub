@@ -34,8 +34,8 @@ npmDevDependencies in Compile ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "me.shadaj"     %%% "slinky-web"         % "0.6.5",
-  "me.shadaj"     %%% "slinky-hot"         % "0.6.5",
+  "me.shadaj"     %%% "slinky-web"         % "0.6.6",
+  "me.shadaj"     %%% "slinky-hot"         % "0.6.6",
   "com.beachape"  %%% "enumeratum"         % "1.6.1",
   "org.scalatest" %%% "scalatest-funsuite" % "3.2.0" % Test
 )
