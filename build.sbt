@@ -12,6 +12,8 @@ lazy val packageJson = PackageJson.readFrom(file("package.json"))
 npmDependencies in Compile ++= packageJson.dependencies
 npmDevDependencies in Compile ++= packageJson.devDependencies
 
+useYarn := true
+
 libraryDependencies ++= Seq(
   "me.shadaj"     %%% "slinky-web"         % "0.6.6",
   "me.shadaj"     %%% "slinky-hot"         % "0.6.6",
