@@ -7,5 +7,5 @@ addSbtPlugin("org.scalablytyped.converter" % "sbt-converter"       % "1.0.0-beta
 
 libraryDependencies ++= Seq(
   "com.dorkbox"  % "Notify"  % "3.7",
-  "com.lihaoyi" %% "upickle" % "1.2.0"
+  "com.lihaoyi" %% "upickle" % "1.2.2"
 )
