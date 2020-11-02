@@ -20,6 +20,7 @@ libraryDependencies ++= Seq(
 )
 
 stFlavour := Slinky
+stIgnore := List("jsdom", "react-proxy")
 
 scalacOptions in Compile ++= Seq(
   "-Ymacro-annotations",
