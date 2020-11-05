@@ -10,7 +10,7 @@
     "@types/react-router-dom": "5.1.2",
     "csv-parse": "4.11.1",
     "jsdom": "^9.9.0",
-    "react": "16.13.1",
+    "react": "17.0.1",
     "react-dom": "16.13.1",
     "react-proxy": "1.1.8",
     "react-router-dom": "5.1.2"
