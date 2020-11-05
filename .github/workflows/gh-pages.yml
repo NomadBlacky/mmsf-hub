@@ -26,17 +26,17 @@ jobs:
             ~/.cache/coursier
             ~/.ivy2
             ~/.cache/scalablytyped
-            .target/scala-2.13/scalajs-bundler/main/node_modules
+            frontend/node_modules
           key: ${{ runner.os }}-cache-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-cache-
 
       - name: Build App
-        run: ./sbt fullOptJS::webpack
+        run: ./sbt frontend/fullOptJS::webpack
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: frontend/build
           cname: mmsf-hub.nomadblacky.dev
