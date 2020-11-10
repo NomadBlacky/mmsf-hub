@@ -1,6 +1,6 @@
 package mmsf_hub.sss_viewer.components
 
-import mmsf_hub.domain.BattleCard
+import mmsf_hub.common.model.BattleCard
 import mmsf_hub.sss_viewer.model.{CardTable, Server}
 import slinky.core.StatelessComponent
 import slinky.core.annotations.react
