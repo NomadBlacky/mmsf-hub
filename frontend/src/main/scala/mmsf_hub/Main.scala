@@ -1,6 +1,6 @@
 package mmsf_hub
 
-import mmsf_hub.domain.BattleCard
+import mmsf_hub.common.model.BattleCard
 import mmsf_hub.sss_viewer.components.MainComponent
 import mmsf_hub.sss_viewer.model.{CardTable, Server, ServerType}
 import org.scalajs.dom
