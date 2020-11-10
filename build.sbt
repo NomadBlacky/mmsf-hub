@@ -2,12 +2,21 @@ import dorkbox.notify.Notify
 import org.scalablytyped.converter.Flavour.Slinky
 
 ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / scalacOptions ++= Seq(
+  "-Ymacro-annotations",
+  "-Xfatal-warnings",
+  "-deprecation",
+  "-unchecked"
+)
 
 lazy val fastOptJSWithNotification = taskKey[sbt.Attributed[sbt.File]]("Run fastOptJS and notify compilation result.")
 lazy val packageJson               = settingKey[PackageJson]("package.json")
 
+lazy val domain = project in file("domain")
+
 lazy val frontend = (project in file("frontend"))
   .enablePlugins(ScalaJSBundlerPlugin, ScalablyTypedConverterPlugin)
+  .dependsOn(domain)
   .settings(
     packageJson := PackageJson.readFrom(baseDirectory.value / "package.json"),
     npmDependencies in Compile ++= packageJson.value.dependencies,
@@ -20,12 +29,6 @@ lazy val frontend = (project in file("frontend"))
     ),
     stFlavour := Slinky,
     stIgnore := List("jsdom", "react-proxy"),
-    scalacOptions in Compile ++= Seq(
-      "-Ymacro-annotations",
-      "-Xfatal-warnings",
-      "-deprecation",
-      "-unchecked"
-    ),
     version in webpack := "4.43.0",
     version in startWebpackDevServer := "3.10.3",
     webpackResources := baseDirectory.value / "webpack" * "*",
