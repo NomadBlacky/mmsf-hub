@@ -1,9 +1,9 @@
 package mmsf_hub.sss_viewer.model
 
-import mmsf_hub.common.model.BattleCard
+import mmsf_hub.domain.BattleCard
 
-/**
-  * The battle card table of SSS
+/** The battle card table of SSS
+  *
   * @param cards 6x7
   */
 case class CardTable(cards: Vector[BattleCard]) {

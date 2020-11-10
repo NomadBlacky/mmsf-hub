@@ -6,8 +6,14 @@ ThisBuild / scalaVersion := "2.13.3"
 lazy val fastOptJSWithNotification = taskKey[sbt.Attributed[sbt.File]]("Run fastOptJS and notify compilation result.")
 lazy val packageJson               = settingKey[PackageJson]("package.json")
 
+lazy val domain = crossProject(JVMPlatform, JSPlatform)
+  .crossType(CrossType.Pure)
+  .in(file("domain"))
+lazy val domainJS = domain.js
+
 lazy val frontend = (project in file("frontend"))
   .enablePlugins(ScalaJSBundlerPlugin, ScalablyTypedConverterPlugin)
+  .dependsOn(domainJS)
   .settings(
     packageJson := PackageJson.readFrom(baseDirectory.value / "package.json"),
     npmDependencies in Compile ++= packageJson.value.dependencies,

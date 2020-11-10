@@ -1,3 +1,3 @@
-package mmsf_hub.common.model
+package mmsf_hub.domain
 
 case class BattleCard(id: Long, name: String)
