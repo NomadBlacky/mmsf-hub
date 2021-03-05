@@ -111,11 +111,10 @@ import scala.util.Try
   private def loadFavoriteServerIdsOrEmpty: js.Array[Int] =
     Try {
       JSON.parse(LocalStorage.apply(FavoriteSeverIdsStorageKey).getOrElse("[]")).asInstanceOf[js.Array[Int]]
-    }.recover {
-      case e =>
-        js.Dynamic.global.console.warn(e.getMessage)
-        LocalStorage.remove(FavoriteSeverIdsStorageKey)
-        js.Array[Int]()
+    }.recover { case e =>
+      js.Dynamic.global.console.warn(e.getMessage)
+      LocalStorage.remove(FavoriteSeverIdsStorageKey)
+      js.Array[Int]()
     }.get
 
   private def onToggleFavorite(serverId: Int): Unit = {

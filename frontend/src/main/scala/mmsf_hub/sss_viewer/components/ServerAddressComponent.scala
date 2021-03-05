@@ -12,15 +12,14 @@ import typings.react.mod.CSSProperties
 
   val component: FunctionalComponent[Props] = FunctionalComponent[Props] { props =>
     div(className := "table")(
-      Seq("A", "B", "C").zipWithIndex.map {
-        case (name, index) =>
-          div()(
-            Button
-              .variant(outlined)
-              .style(getStyle(props.selectedAddress.contains(index)))
-              .onClick(_ => props.onClick(index))
-              .apply(name)
-          )
+      Seq("A", "B", "C").zipWithIndex.map { case (name, index) =>
+        div(key := index.toString)(
+          Button
+            .variant(outlined)
+            .style(getStyle(props.selectedAddress.contains(index)))
+            .onClick(_ => props.onClick(index))
+            .apply(name)
+        )
       }
     )
   }
