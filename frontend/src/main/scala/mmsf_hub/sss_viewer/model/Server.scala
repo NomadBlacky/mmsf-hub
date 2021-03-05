@@ -2,7 +2,14 @@ package mmsf_hub.sss_viewer.model
 
 import enumeratum.{Enum, EnumEntry}
 
-case class Server(id: Int, serverType: ServerType, level: Int, name: String, cardTable: CardTable)
+case class Server(
+    id: Int,
+    serverType: ServerType,
+    level: Int,
+    name: String,
+    cardTable: CardTable,
+    accessCode: AccessCode
+)
 
 sealed trait ServerType extends EnumEntry
 

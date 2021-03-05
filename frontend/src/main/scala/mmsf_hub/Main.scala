@@ -2,7 +2,7 @@ package mmsf_hub
 
 import mmsf_hub.domain.BattleCard
 import mmsf_hub.sss_viewer.components.MainComponent
-import mmsf_hub.sss_viewer.model.{CardTable, Server, ServerType}
+import mmsf_hub.sss_viewer.model.{AccessCode, CardTable, Server, ServerType}
 import org.scalajs.dom
 import org.scalajs.dom.raw.{Element, XMLHttpRequest}
 import slinky.hot
@@ -49,6 +49,7 @@ object Main {
     xhr.send()
   }
 
+  // TODO: Move to SSSViewer
   private def loadApp(xhr: XMLHttpRequest, container: Element): Unit = {
     val rawServers =
       parseCsv(
@@ -62,7 +63,8 @@ object Main {
         serverType = ServerType.values(dict("type").toInt),
         level = dict("level").toInt,
         name = dict("name"),
-        cardTable = CardTable(parseCards(dict("cards")))
+        cardTable = CardTable(parseCards(dict("cards"))),
+        accessCode = AccessCode(dict("access_code"))
       )
     }.toSeq
 

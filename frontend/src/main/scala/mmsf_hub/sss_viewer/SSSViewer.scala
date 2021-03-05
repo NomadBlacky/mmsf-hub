@@ -76,6 +76,10 @@ import scala.util.Try
                   selectedAddress = state.serverAddress,
                   onClick = i => setState(state.copy(serverAddress = Some(i)))
                 )
+              ),
+              div(className := "server-command")(
+                p("アクセスコード"),
+                AccessCodeComponent(selectedServer)
               )
             ),
             div(className := "server-content")(

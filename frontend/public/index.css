@@ -49,6 +49,23 @@ body {
   margin: 0.5em;
 }
 
+.sss-viewer-root .main .server-command .table {
+  display: table;
+  border: groove;
+}
+
+.sss-viewer-root .main .server-command .table .row {
+  display: table-row;
+}
+
+.sss-viewer-root .main .server-command .table .row .key {
+  display: table-cell;
+  width: 2em;
+  height: 2em;
+  border: groove;
+  text-align: center;
+}
+
 .sss-viewer-root .main .server-content {
   margin-left: 1em;
 }
