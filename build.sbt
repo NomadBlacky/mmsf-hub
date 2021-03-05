@@ -19,8 +19,8 @@ lazy val frontend = (project in file("frontend"))
     npmDependencies in Compile ++= packageJson.value.dependencies,
     npmDevDependencies in Compile ++= packageJson.value.devDependencies,
     libraryDependencies ++= Seq(
-      "me.shadaj"     %%% "slinky-web"         % "0.6.6",
-      "me.shadaj"     %%% "slinky-hot"         % "0.6.6",
+      "me.shadaj"     %%% "slinky-web"         % "0.6.7",
+      "me.shadaj"     %%% "slinky-hot"         % "0.6.7",
       "com.beachape"  %%% "enumeratum"         % "1.6.1",
       "org.scalatest" %%% "scalatest-funsuite" % "3.2.2" % Test
     ),
