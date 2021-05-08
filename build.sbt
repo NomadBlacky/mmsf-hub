@@ -1,7 +1,7 @@
 import dorkbox.notify.Notify
 import org.scalablytyped.converter.Flavour.Slinky
 
-ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / scalaVersion := "2.13.5"
 
 lazy val fastOptJSWithNotification = taskKey[sbt.Attributed[sbt.File]]("Run fastOptJS and notify compilation result.")
 lazy val packageJson               = settingKey[PackageJson]("package.json")
@@ -22,7 +22,7 @@ lazy val frontend = (project in file("frontend"))
       "me.shadaj"     %%% "slinky-web"         % "0.6.7",
       "me.shadaj"     %%% "slinky-hot"         % "0.6.7",
       "com.beachape"  %%% "enumeratum"         % "1.6.1",
-      "org.scalatest" %%% "scalatest-funsuite" % "3.2.2" % Test
+      "org.scalatest" %%% "scalatest-funsuite" % "3.2.8" % Test
     ),
     stFlavour := Slinky,
     stIgnore := List("jsdom", "react-proxy"),
